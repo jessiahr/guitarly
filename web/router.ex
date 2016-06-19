@@ -19,8 +19,9 @@ defmodule Guitarly.Router do
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", Guitarly do
-  #   pipe_through :api
-  # end
+  scope "/api", Guitarly do
+    pipe_through :api
+
+    resources "/exercises", ExerciseController, except: [:new, :edit]
+  end
 end
